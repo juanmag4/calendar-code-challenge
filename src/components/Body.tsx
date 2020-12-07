@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import moment from 'moment';
 import { Day } from './Day';
 import { getFirstDayOfMonth, sortDays } from '../utils.ts';
-import { RESET } from '../actions/types';
+import { RESET, DELETE_ALL_REMINDERS } from '../actions/types';
 
 export const Body = () => {
   const dispatch = useDispatch();
@@ -43,9 +43,17 @@ export const Body = () => {
     });
   };
 
+  const deleteAllReminders = () => {
+    dispatch({ type: DELETE_ALL_REMINDERS });
+  };
+
   return (
     <>
       {renderDays()}
+      <br />
+      <button type="button" className="btn btn-primary" onClick={deleteAllReminders}>
+        Delete All
+      </button>
     </>
   )
 };

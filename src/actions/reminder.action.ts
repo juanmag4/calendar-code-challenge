@@ -1,3 +1,3 @@
-export const reminder = () => {
+export const fetchCityWeather = () => {
 
 };

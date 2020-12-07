@@ -1,4 +1,6 @@
 # Getting Started with Create React App
+Node Version: 14.4.0
+NPM Version: 6.14.5
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 

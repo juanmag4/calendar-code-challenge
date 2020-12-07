@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import moment from 'moment';
 import { Reminder } from './Reminder';
-import { EDIT_REMINDER, DELETE_REMINDER } from '../actions/types';
+import { EDIT_REMINDER, DELETE_REMINDER, SELECT_DAY } from '../actions/types';
 import { WEEKEND_DAYS } from '../constants';
 
 export const Day = ({ numberDay }: any) => {
@@ -12,6 +12,7 @@ export const Day = ({ numberDay }: any) => {
   const { reminders } = useSelector(({ reminder }: any) => reminder);
 
   const navigateReminder = () => {
+    dispatch({ type: SELECT_DAY, payload: numberDay });
     history.push(`/reminder`);
   };
 

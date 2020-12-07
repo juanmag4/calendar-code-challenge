@@ -1,4 +1,4 @@
-import { ADD_REMINDER, EDIT_REMINDER, RESET, DELETE_ALL_REMINDERS, DELETE_REMINDER } from '../actions/types';
+import { ADD_REMINDER, EDIT_REMINDER, RESET, DELETE_ALL_REMINDERS, DELETE_REMINDER, SELECT_DAY } from '../actions/types';
 import { EMPTY_REMINDER } from '../constants';
 
 const INITIAL_STATE: any = {
@@ -18,6 +18,10 @@ const INITIAL_STATE: any = {
 
 export default function (state: any = INITIAL_STATE, action: any) {
   switch (action.type) {
+    case SELECT_DAY:
+      let newSelected = { ...state.selected };
+      newSelected.day = action.payload;
+      return { ...state, selected: newSelected };
     case ADD_REMINDER:
       let idCount = state.idCount;
       const { reminder } = action.payload;

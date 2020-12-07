@@ -5,3 +5,8 @@ export const EMPTY_REMINDER = {
   reminder: "",
   time: "10:00"
 };
+
+export const WEEKEND_DAYS = [
+  'Saturday',
+  'Sunday'
+];

@@ -16,8 +16,8 @@ export const Day = ({ numberDay }: any) => {
     history.push(`/reminder`);
   };
 
-  const edit = (reminder: any, index: number) => {
-    dispatch({ type: EDIT_REMINDER, payload: { selected: reminder, index } });
+  const edit = (reminder: any) => {
+    dispatch({ type: EDIT_REMINDER, payload: { selected: reminder } });
   };
 
   const deleteReminder = (id: number) => {
@@ -32,18 +32,31 @@ export const Day = ({ numberDay }: any) => {
       { backgroundColor: 'white', color: 'black' };
   };
 
+  const sortPerTime = (a: any, b: any) => {
+    const aTime = moment(a.time, 'HHmm');
+    const bTime = moment(b.time, 'HHmm');
+    
+    if (aTime.isAfter(bTime)) {
+      return 1;
+    }
+    if (aTime.isBefore(bTime)) {
+      return -1;
+    }
+
+    return 0;
+  };
+
   return (
     <td
       style={{ height: '96px', width: '96px', border: '1px solid gray', verticalAlign: 'top', ...isWeekend() }}
       onClick={navigateReminder}
     >
       {numberDay}
-      {reminders.filter(({ day }: any) => day == numberDay).map((reminder: any, index: number) =>
+      {reminders.filter(({ day }: any) => day == numberDay).sort(sortPerTime).map((reminder: any) =>
         <Reminder
           key={reminder.id}
           reminder={reminder}
           editCallback={edit}
-          index={index}
           deleteCallback={deleteReminder}
         />
       )}

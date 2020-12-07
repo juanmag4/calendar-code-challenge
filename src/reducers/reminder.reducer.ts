@@ -12,7 +12,6 @@ const INITIAL_STATE: any = {
   }],
   selected: EMPTY_REMINDER,
   editMode: false,
-  index: null,
   idCount: 1
 };
 
@@ -39,9 +38,9 @@ export default function (state: any = INITIAL_STATE, action: any) {
       return { ...state, reminders, idCount };
     case EDIT_REMINDER:
       const { selected } = action.payload;
-      return { ...state, selected, editMode: true, index: action.payload.index };
+      return { ...state, selected, editMode: true };
     case RESET:
-      return { ...state, selected: EMPTY_REMINDER, index: null, editMode: false };
+      return { ...state, selected: EMPTY_REMINDER, editMode: false };
     case DELETE_ALL_REMINDERS:
       return { ...state, reminders: [] };
     case DELETE_REMINDER:

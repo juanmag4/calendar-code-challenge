@@ -2,7 +2,7 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { Reminder } from './Reminder';
-import { EDIT_REMINDER } from '../actions/types';
+import { EDIT_REMINDER, DELETE_REMINDER } from '../actions/types';
 
 export const Day = ({ numberDay }: any) => {
   const history = useHistory();
@@ -17,6 +17,10 @@ export const Day = ({ numberDay }: any) => {
     dispatch({ type: EDIT_REMINDER, payload: { selected: reminder, index } });
   };
 
+  const deleteReminder = (id: number) => {
+    dispatch({ type: DELETE_REMINDER, payload: id });
+  };
+
   return (
     <td
       style={{ height: '96px', width: '96px', border: '1px solid gray', verticalAlign: 'top' }}
@@ -24,7 +28,7 @@ export const Day = ({ numberDay }: any) => {
     >
       {numberDay}
       {reminders.filter(({ day }: any) => day == numberDay).map((reminder: any, index: number) =>
-        <Reminder reminder={reminder} callback={edit} index={index} />
+        <Reminder reminder={reminder} editCallback={edit} index={index} deleteCallback={deleteReminder} />
       )}
     </td>
   );

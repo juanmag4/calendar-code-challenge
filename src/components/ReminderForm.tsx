@@ -10,9 +10,9 @@ export const ReminderForm = () => {
   const history = useHistory();
   const [hour, onHourChange] = useState<any>('10:00');
   const dispatch = useDispatch();
-  const { selected, idCount } = useSelector(({ reminder }: any) => reminder);
+  const { selected } = useSelector(({ reminder }: any) => reminder);
   const { city, color, day, reminder, time, id } = selected;
-  const { register, handleSubmit, watch, errors } = useForm({
+  const { register, handleSubmit } = useForm({
     defaultValues: {
       city, color, day, reminder, time
     }
@@ -34,7 +34,7 @@ export const ReminderForm = () => {
     <form onSubmit={handleSubmit(onSubmit)}>
       <select name="day" ref={register}>
         {getDays().map((num: number) =>
-          <option value={num}>{num}</option>
+          <option key={num} value={num}>{num}</option>
         )}
       </select>
       <br />

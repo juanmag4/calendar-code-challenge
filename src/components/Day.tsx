@@ -39,7 +39,13 @@ export const Day = ({ numberDay }: any) => {
     >
       {numberDay}
       {reminders.filter(({ day }: any) => day == numberDay).map((reminder: any, index: number) =>
-        <Reminder reminder={reminder} editCallback={edit} index={index} deleteCallback={deleteReminder} />
+        <Reminder
+          key={reminder.id}
+          reminder={reminder}
+          editCallback={edit}
+          index={index}
+          deleteCallback={deleteReminder}
+        />
       )}
     </td>
   );

@@ -35,7 +35,7 @@ export const Day = ({ numberDay }: any) => {
   const sortPerTime = (a: any, b: any) => {
     const aTime = moment(a.time, 'HHmm');
     const bTime = moment(b.time, 'HHmm');
-    
+
     if (aTime.isAfter(bTime)) {
       return 1;
     }
@@ -52,14 +52,16 @@ export const Day = ({ numberDay }: any) => {
       onClick={navigateReminder}
     >
       {numberDay}
-      {reminders.filter(({ day }: any) => day == numberDay).sort(sortPerTime).map((reminder: any) =>
-        <Reminder
-          key={reminder.id}
-          reminder={reminder}
-          editCallback={edit}
-          deleteCallback={deleteReminder}
-        />
-      )}
+      <div style={{ height: '68px', overflow: 'auto' }}>
+        {reminders.filter(({ day }: any) => day == numberDay).sort(sortPerTime).map((reminder: any) =>
+          <Reminder
+            key={reminder.id}
+            reminder={reminder}
+            editCallback={edit}
+            deleteCallback={deleteReminder}
+          />
+        )}
+      </div>
     </td>
   );
 };

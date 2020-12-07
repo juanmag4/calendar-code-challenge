@@ -11,7 +11,7 @@ export const ReminderForm = () => {
   const [hour, onHourChange] = useState<any>('10:00');
   const dispatch = useDispatch();
   const { selected, idCount } = useSelector(({ reminder }: any) => reminder);
-  const { city, color, day, reminder, time } = selected;
+  const { city, color, day, reminder, time, id } = selected;
   const { register, handleSubmit, watch, errors } = useForm({
     defaultValues: {
       city, color, day, reminder, time
@@ -25,7 +25,7 @@ export const ReminderForm = () => {
   const onSubmit = (data: any) => {
     const formData = { ...data };
     formData['time'] = hour;
-    formData['id'] = idCount;
+    formData['id'] = id;
     dispatch({ type: ADD_REMINDER, payload: { reminder: formData } });
     history.push('/');
   };

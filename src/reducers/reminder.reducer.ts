@@ -19,16 +19,20 @@ const INITIAL_STATE: any = {
 export default function (state: any = INITIAL_STATE, action: any) {
   switch (action.type) {
     case ADD_REMINDER:
+      let idCount = state.idCount;
       const { reminder } = action.payload;
-      const reminders = [...state.reminders];
+      const reminders: any = [...state.reminders];
 
       if (state.editMode) {
-        reminders[state.index] = reminder;
+        const index = reminders.findIndex(({ id }: any) => id == reminder.id);
+        reminders[index] = reminder;
       } else {
+        reminder['id'] = state.idCount;
         reminders.push(reminder);
+        idCount++;
       }
 
-      return { ...state, reminders, idCount: state.idCount + 1 };
+      return { ...state, reminders, idCount };
     case EDIT_REMINDER:
       const { selected } = action.payload;
       return { ...state, selected, editMode: true, index: action.payload.index };

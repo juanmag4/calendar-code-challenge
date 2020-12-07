@@ -48,7 +48,7 @@ export const Day = ({ numberDay }: any) => {
 
   return (
     <td
-      style={{ height: '96px', width: '96px', border: '1px solid gray', verticalAlign: 'top', ...isWeekend() }}
+      style={{ height: '96px', width: '96px', border: '1px solid gray', verticalAlign: 'top', ...isWeekend(), pointerEvents: !numberDay ? 'none' : undefined }}
       onClick={navigateReminder}
     >
       {numberDay}
